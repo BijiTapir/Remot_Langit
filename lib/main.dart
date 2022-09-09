@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    home: HomePage(),
+      home: HomePage(),
     );
   }
 }
@@ -35,69 +35,78 @@ class _HomePageState extends State<HomePage> {
   WeatherApiClient client = WeatherApiClient();
   Weather? data;
 
-  Future<void> getData() async{
-    data = await client.getCurrentWeather("Sunda");
+  Future<void> getData() async {
+    data = await client.getCurrentWeather("Kudus");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFf9f9f9),
-      appBar: AppBar(
         backgroundColor: Color(0xFFf9f9f9),
-        elevation: 0.0,
-        title: const Text("Remot Langit", style: TextStyle(color: Colors.black),),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.location_on_outlined,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => wilayah()));
-            },
+        appBar: AppBar(
+          backgroundColor: Color(0xFFf9f9f9),
+          elevation: 0.0,
+          title: const Text(
+            "Remot Langit",
+            style: TextStyle(color: Colors.black),
           ),
-        ],
-        leading: IconButton(onPressed: (){},icon: Icon(Icons.menu),
-        color: Colors.black,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.location_on_outlined,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => wilayah()));
+              },
+            ),
+          ],
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.menu),
+            color: Colors.black,
+          ),
         ),
-      ),
-      body: FutureBuilder(
-        future: getData(),
-        builder: (context, snapshot){
-          if(snapshot.connectionState == ConnectionState.done){
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                currentWeather(Icons.wb_sunny_rounded, "${data!.temp}°c",
-                "${data!.cityName}"),
-                SizedBox(
-                  height: 60.0,
-                ),
-                Text(
-                  "Informasi Tambahan",
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    color: Color(0xdd212121),
-                    fontWeight: FontWeight.bold,
+        body: FutureBuilder(
+          future: getData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 40),
+                  currentWeather(Icons.wb_sunny_rounded, "${data!.temp}°c",
+                      "${data!.cityName}", "${data!.country}"),
+                  SizedBox(
+                    height: 60.0,
                   ),
-                ),
-                Divider(),
-                SizedBox(
-                  height: 20.0,
-                ),
-                additionalInformation("${data!.wind}km/j", "${data!.humidity}%", "${data!.pressure}", "${data!.feels_like}°c")
-              ],
-            );
-          }else if(snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator(),
-            );
-          }
-          return Container();
-        },
-      )
-    );
+                  Text(
+                    "Informasi Tambahan",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Color(0xdd212121),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  additionalInformation(
+                      "${data!.wind} km/j",
+                      "${data!.pressure} mbar",
+                      "${data!.humidity} %",
+                      "${data!.feels_like}°c")
+                ],
+              );
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Container();
+          },
+        ));
   }
 }
-

@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 
-Widget currentWeather(IconData icon, String temp, String location){
+Widget currentWeather(
+    IconData icon, String temp, String location, String country) {
   return Center(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -13,7 +12,8 @@ Widget currentWeather(IconData icon, String temp, String location){
           color: Colors.orange,
           size: 64.0,
         ),
-        SizedBox(height: 10.0,
+        SizedBox(
+          height: 10.0,
         ),
         Text(
           "$temp",
@@ -23,8 +23,10 @@ Widget currentWeather(IconData icon, String temp, String location){
         ),
         SizedBox(height: 10.0),
         Text(
-          "$location",
-          style: TextStyle(fontSize: 18.0,color: Color(0xFF5a5a5a),
+          "$location, $country",
+          style: TextStyle(
+            fontSize: 18.0,
+            color: Color(0xFF5a5a5a),
           ),
         )
       ],
