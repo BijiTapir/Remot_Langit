@@ -33,21 +33,69 @@ class wilayah extends StatelessWidget {
               mainAxisSpacing: 14,
               children: [
                 ItemWilayah(
-                    kota: "Kudus",
+                    kota: "Bali",
                     negara: "Indonesia",
-                    bendera: "images/indo.png"),
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Balikpapan",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Bandung",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Bogor",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Cibubur",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
                 ItemWilayah(
                     kota: "Demak",
                     negara: "Indonesia",
-                    bendera: "images/indo.png"),
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Depok",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
                 ItemWilayah(
                     kota: "Jakarta",
                     negara: "Indonesia",
-                    bendera: "images/indo.png"),
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
                 ItemWilayah(
-                    kota: "Yogyakarta",
+                    kota: "Kudus",
                     negara: "Indonesia",
-                    bendera: "images/indo.png"),
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Jepara",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Kendal",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Klaten",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Malang",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Semarang",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Pekalongan",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
+                ItemWilayah(
+                    kota: "Purwokerto",
+                    negara: "Indonesia",
+                    bendera: "https://pngimage.net/wp-content/uploads/2018/06/gambar-bendera-indonesia-png-3.png"),
               ],
             )));
   }
@@ -67,7 +115,7 @@ class ItemWilayah extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.pop(context, kota);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -87,7 +135,7 @@ class ItemWilayah extends StatelessWidget {
                 Container(
                   height: 80,
                   width: 130,
-                  child: Image.asset(
+                  child: Image.network(
                     bendera,
                     fit: BoxFit.cover,
                   ),
