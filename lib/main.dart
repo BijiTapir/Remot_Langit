@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cuaca_api/favorite_page.dart';
 import 'package:cuaca_api/ganti_wilayah/ganti_wilayah.dart';
 import 'package:cuaca_api/services/weather_api_client.dart';
 import 'package:cuaca_api/views/additional_information.dart';
@@ -129,19 +130,36 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.grey,
                 ),
                 SizedBox(height: 26),
-                Row(
-                  children: [
-                    Icon(Icons.settings_outlined),
-                    SizedBox(width: 7),
-                    Text("Setting", style: TextStyle(fontSize: 16),),
-                  ],
+                InkWell(
+                  child: Row(
+                    children: [
+                      Icon(Icons.favorite_border),
+                      SizedBox(width: 7),
+                      Text(
+                        "Favorit",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  onTap: () async {
+                    final result = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FavoritePage()));
+                    setState(() {
+                      kota = result;
+                    });
+                  },
                 ),
                 SizedBox(height: 17),
                 Row(
                   children: [
-                    Icon(Icons.share),
+                    Icon(Icons.settings_outlined),
                     SizedBox(width: 7),
-                    Text("Berbagi", style: TextStyle(fontSize: 16),),
+                    Text(
+                      "Setting",
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
                 SizedBox(height: 17),
@@ -149,12 +167,13 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Icon(Icons.info_outline),
                     SizedBox(width: 7),
-                    Text("Info", style: TextStyle(fontSize: 16),),
+                    Text(
+                      "Info",
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
               ],
-
-
             ),
           ),
         ),
